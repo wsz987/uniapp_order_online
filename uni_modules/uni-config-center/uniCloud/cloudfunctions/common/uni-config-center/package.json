@@ -1,0 +1,12 @@
+{
+	"name": "uni-config-center",
+	"version": "0.0.2",
+	"description": "配置中心",
+	"main": "index.js",
+	"keywords": [],
+	"author": "DCloud",
+	"license": "Apache-2.0",
+	"dependencies": {
+		"uni-cloud-router": "file:../../../../../uni-cloud-router/uniCloud/cloudfunctions/common/uni-cloud-router"
+	}
+}

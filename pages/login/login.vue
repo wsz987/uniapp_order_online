@@ -1,0 +1,62 @@
+<template>
+	<view class="login">
+		<u--form labelPosition="left" :model="loginForm" :rules="fromRules" ref="loginFormRef" labelWidth="55">
+			<u-form-item label="用户名" prop="username" ref="username">
+				<u--input v-model="loginForm.username" border="bottom" clearable></u--input>
+			</u-form-item>
+			<u-form-item label="密 码" prop="password" ref="password">
+				<u--input v-model="loginForm.password" border="bottom" password clearable></u--input>
+			</u-form-item>
+		</u--form>
+		<u-button color="#FF7E00" text="登录" @click="handleLogin" class="login-btn"></u-button>
+		<u-button type="success" text="微信授权" @click="wxLogin" class="login-btn" openType="getUserInfo"></u-button>
+	</view>
+</template>
+
+<script>
+	import login from '@/api/login'
+	export default {
+		data() {
+			return {
+				loginForm: {
+					username: 'wsz987',
+					password: 'wsz987'
+				},
+				fromRules: {
+					username: {
+						type: 'string',
+						required: true,
+						message: '请输入用户名',
+					},
+					password: {
+						type: 'string',
+						min: 6,
+						required: true,
+						message: '请确认密码',
+					}
+				}
+			};
+		},
+		methods: {
+			handleLogin() {
+				this.$refs['loginFormRef'].validate().then(async res => {
+					const status = await login(this.loginForm)
+					setTimeout(()=>status && uni.navigateBack(),1000)
+				})
+				// .catch(errors => {
+				// 	uni.$u.toast('校验失败')
+				// })
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.login {
+		padding: 30rpx;
+		box-sizing: border-box;
+		.login-btn{
+			margin: 30rpx 0;
+		}
+	}
+</style>

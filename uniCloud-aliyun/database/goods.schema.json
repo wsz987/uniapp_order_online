@@ -1,0 +1,63 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": false,
+		"update": false,
+		"delete": false
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"goods_name": {
+			"bsonType": "string",
+			"trim": "both",
+			"description": "商品名称"
+		},
+		"goods_price": {
+			"bsonType": "int",
+			"description": "商品价格(分)"
+		},
+		"goods_count": {
+			"bsonType": "int",
+			"defaultValue": 99,
+			"description": "商品数量"
+		},
+		"goods_imgs": {
+			"bsonType": "array",
+			"defaultValue": [],
+			"arrayType": "string",
+			"description": "商品图片"
+		},
+		"goods_desc": {
+			"bsonType": "string",
+			"trim": "both",
+			"description": "商品描述"
+		},
+		"goods_details": {
+			"bsonType": "string",
+			"trim": "both",
+			"description": "商品详情"
+		},
+		"good_type_id": {
+			"bsonType": "int",
+			"description": "商品类型"
+		},
+		"goods_params": {
+			"bsonType": "array",
+			"defaultValue": [],
+			"arrayType": "int",
+			"description": "商品参数"
+		},
+		"create_date": {
+			"bsonType": "timestamp",
+			"forceDefaultValue": {
+				"$env": "now"
+			},
+			"description": "商品创建时间"
+		}
+	}
+}
