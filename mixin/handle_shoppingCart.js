@@ -4,8 +4,7 @@ const shopping_cart = {
 	  this.isEmpty && this.initShopping_Cart()
   },
   methods: {
-	  ...mapActions('shoppingCart',['initShopping_Cart']),
-	  // ...mapMutations('shoppingCart',['setStorage'])
+	  ...mapActions('shoppingCart',['initShopping_Cart'])
   },
   computed:{
 	  ...mapGetters('shoppingCart', ['getCart']),

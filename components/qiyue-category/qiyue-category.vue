@@ -11,7 +11,7 @@
 			</view>
 			<view class="nav-right">
 				<scroll-view scroll-y :scroll-top="scrollTop" @scroll="scroll" :style="'height:'+height+'px'" scroll-with-animation>
-					<slot :data="getSubCategoryList"></slot>
+					<slot :goodsData="getSubCategoryList"></slot>
 					<!-- <view class="nav-right-item" v-for="(item,index2) in subCategoryList" :key="index2" @click="categoryClickSub(item)">
 						<image :src="item[imgSrc]" />
 						<view>{{item[label]}}</view>

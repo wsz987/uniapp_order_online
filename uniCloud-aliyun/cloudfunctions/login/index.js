@@ -5,7 +5,7 @@ exports.main = async (event, context) => {
 		affectedDocs,
 		data
 	} = await db.collection('user').where(event).get()
-	console.log('event : ', affectedDocs, data)
+	// console.log('event : ', affectedDocs, data)
 	if (!affectedDocs) return {
 		code: 403,
 		data:false,
@@ -13,7 +13,13 @@ exports.main = async (event, context) => {
 	}
 	return {
 		code: 200,
-		data:true,
+		// data:true,
+		data:{
+			status:true,
+			userid:data[0]._id,
+			username:data[0].username,
+			avatar:data[0].avatar
+		},
 		msg: '登录成功'
 	}
 };

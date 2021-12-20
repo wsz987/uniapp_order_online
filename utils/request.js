@@ -1,5 +1,7 @@
 import handleCode from "@/utils/handleCode"
+import { isLogin } from '@/utils/validate'
 export default function(url,data={}) {
+	// isLogin()
 	return new Promise((reslove,reject) => {
 		uniCloud.callFunction({
 		    name: url,
@@ -13,7 +15,7 @@ export default function(url,data={}) {
 				}) && reject('api fail')
 				code == 200 && msg && uni.showToast({
 					title: msg,
-					duration: 2000
+					duration: 1500
 				})
 				reslove(data)
 			},

@@ -1,7 +1,7 @@
 <template>
 	<view class="goods-item" @click="toGoods(info)">
-		<u--image src="https://cdn.uviewui.com/uview/album/1.jpg" :lazy-load="true" radius='5'
-			width='80'>
+		<u--image :src="info.goods_imgs[0]" :lazy-load="true" radius='5'
+			width='80' mode="widthFix">
 		</u--image>
 		<view class="content">
 			<view class="name">
@@ -10,19 +10,14 @@
 			<view class="price">
 				￥{{ $price(info.goods_price) }}
 			</view>
-			<!-- <view class="count">
-				剩余 {{info.count}}
-			</view> -->
 			<view class="buy">
 				<view :class="['reduce','btn',getGoodsCartCount(info._id)==0 ?'disabled':'']" @click.stop="reduceCountByID(info._id)">
 					-
 				</view>
 				<view class="count">
-					<!-- {{count}} -->
 					{{getGoodsCartCount(info._id)}}
 				</view>
 				<view class="add btn" @click.stop="addCart(info)">
-				<!-- <view class="add btn" @click.stop="count >= 0 && count++"> -->
 					+
 				</view>
 			</view>
@@ -32,8 +27,10 @@
 
 <script>
 	import { mapMutations, mapGetters} from 'vuex'
+	import setStorage from '@/mixin/setStorage.js'
 	export default {
 		name: "GoodsItem",
+		mixins:[setStorage],
 		props: {
 			info: {
 				type: Object,
@@ -46,7 +43,7 @@
 			};
 		},
 		methods: {
-			...mapMutations('shoppingCart',['addCart','reduceCountByID','setStorage']),
+			...mapMutations('shoppingCart',['addCart','reduceCountByID']),
 			toGoods(data) {
 				// uni.navigateTo({
 				// 	url: '/pages/goods/goods',
@@ -62,12 +59,7 @@
 					return (val * 0.01).toFixed(2)
 				}
 			},
-			...mapGetters('shoppingCart',['getGoodsCartCount','getCart'])
-		},
-		watch:{
-			getCart(val){
-				this.setStorage()
-			}
+			...mapGetters('shoppingCart',['getGoodsCartCount'])
 		}
 	}
 </script>
@@ -84,6 +76,7 @@
 		box-shadow: 0 5rpx 8rpx rgba(0, 0, 0, .3);
 		/deep/.u-image{
 			height: 100% !important;
+			// height: auto !important;
 		}
 
 		.content {

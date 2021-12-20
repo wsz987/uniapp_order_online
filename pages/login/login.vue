@@ -8,12 +8,13 @@
 				<u--input v-model="loginForm.password" border="bottom" password clearable></u--input>
 			</u-form-item>
 		</u--form>
-		<u-button color="#FF7E00" text="登录" @click="handleLogin" class="login-btn"></u-button>
-		<u-button type="success" text="微信授权" @click="wxLogin" class="login-btn" openType="getUserInfo"></u-button>
+		<u-button color="#FF7E00" text="登录" @click="handleLogin"></u-button>
+		<u-button type="success" text="微信授权" @click="wxLogin" openType="getUserInfo"></u-button>
 	</view>
 </template>
 
 <script>
+	import { mapMutations } from 'vuex'
 	import login from '@/api/login'
 	export default {
 		data() {
@@ -38,14 +39,14 @@
 			};
 		},
 		methods: {
+			...mapMutations('user',['setUser']),
 			handleLogin() {
 				this.$refs['loginFormRef'].validate().then(async res => {
-					const status = await login(this.loginForm)
+					const {status,userid,avatar,username} = await login(this.loginForm)
+					status && uni.setStorageSync('open_id', userid);
+					this.setUser({userid,avatar,username})
 					setTimeout(()=>status && uni.navigateBack(),1000)
 				})
-				// .catch(errors => {
-				// 	uni.$u.toast('校验失败')
-				// })
 			}
 		}
 	}
@@ -55,8 +56,8 @@
 	.login {
 		padding: 30rpx;
 		box-sizing: border-box;
-		.login-btn{
-			margin: 30rpx 0;
+		/deep/ .u-button{
+			margin: 30rpx 0 !important;
 		}
 	}
 </style>

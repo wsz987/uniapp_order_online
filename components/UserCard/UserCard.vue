@@ -5,16 +5,15 @@
 			<view class="img-top on"></view>
 			<view class="bottom"></view>
 			<view class="avatar" @click.native="click">
-				<image :src="avatar" class="img"></image>
-			    <view class="name">{{name}}</view>
+				<image :src="getAvatar || avatar" class="img"></image>
+			    <view class="name">{{getUserName || name}}</view>
 			</view>
-			<!-- <view class="avatar" @click="click"><image :src="avatar"></image></view>
-			<view class="name">{{name}}</view> -->
 		</view>
 	</view>
 </template>
 
 <script>
+	import { mapGetters } from 'vuex'
 	export default {
 		name:"UserCard",
 		props: {
@@ -36,6 +35,9 @@
 					})
 				}
 			};
+		},
+		computed:{
+			...mapGetters('user',['getUserName','getAvatar'])
 		}
 	}
 </script>

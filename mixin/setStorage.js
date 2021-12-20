@@ -1,4 +1,4 @@
-import { mapMutations } from 'vuex'
+import { mapMutations,mapGetters } from 'vuex'
 const setStorage = {
 	methods:{
 		...mapMutations('shoppingCart',['setStorage'])
