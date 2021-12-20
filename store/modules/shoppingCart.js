@@ -37,13 +37,11 @@ const mutations = {
 			state.list = state.list.map(item=>{
 				const result = data.find(el=>el._id=item._id)
 				if(!result) return item
-				console.log('result',result)
 				try{
 					item['count'] = result['count']
 				}catch(err){
 					console.log('setList',err)
 				}
-				console.log('item',item)
 				return item
 			})
 			console.log('list',state.list)
@@ -67,7 +65,7 @@ const actions = {
 			const result = data.find(el=>el._id==item._id)
 			if(!result) return item
 			try{
-				// 非严谨
+				// 非严谨 预留 订单提交成功后的购物车删除
 				if(result['count']) item['count'] =item['count'] - result['count']
 				if(result['goods_price']) item['goods_price'] = result['goods_price']
 			}catch(err){
