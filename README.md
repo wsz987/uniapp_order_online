@@ -39,3 +39,23 @@ https://bsppub.oss-cn-shanghai.aliyuncs.com   // 云存储
 #### 初始化项目
 
 `uniCloud-aliyun/database/`  下 `db_init.json `  及  `*.schema.json`  上传初始化
+
+
+
+```
+npm install uview-ui 
+or
+npm i
+```
+
+
+
+#### 小程序 /deep/ 修改样式未生效问题
+
+- [微信文档](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html)  `组件样式隔离`
+- [uni-app文档](https://uniapp.dcloud.io/vue-api?id=%e5%85%b6%e4%bb%96%e9%85%8d%e7%bd%ae)
+
+```js
+options: { styleIsolation: 'shared' },
+```
+

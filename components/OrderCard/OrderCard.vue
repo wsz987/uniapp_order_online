@@ -26,6 +26,7 @@
 <script>
 	export default {
 		name:"OrderCard",
+		options: { styleIsolation: 'shared' },
 		props:{
 			info: {
 				type: Object,
@@ -97,9 +98,6 @@
 		display: flex;
 		flex-direction: row;
 		// justify-content: space-around;
-		/deep/ .u-image{
-			margin-right: 10rpx;
-		}
 	}
 	
 	.bottom{
@@ -124,6 +122,8 @@
 	
 	/deep/ .u-image{
 		height: 100% !important;
+		margin-right: 10rpx !important;
 	}
+
 }
 </style>

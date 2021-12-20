@@ -1,7 +1,9 @@
 <template>
 	<view>
 		<qiyue-category :categoryList="getMenuTypes" @categoryMainClick="categoryMainClick" v-slot="{ goodsData }">
-			<GoodsItem :info='item' v-for="(item,index) in goodsData" :key='item._id' />
+			<view v-for="(item,index) in goodsData" :key='item._id'>
+				<GoodsItem :info='item' />
+			</view>
 		</qiyue-category>
 	</view>
 </template>
@@ -42,7 +44,6 @@
 				'getGoods'
 			]),
 			getMenuTypes() {
-				console.log('getMenuTypes')
 				const data = Array.from(this.getGoods.goods_types).map(item => {
 					item.key = item.goods_type_id
 					item.name = item.goods_type_name
@@ -57,6 +58,6 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 </style>

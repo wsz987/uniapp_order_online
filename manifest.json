@@ -1,5 +1,5 @@
 {
-    "name" : "order_online",
+    "name" : "在线饮品点餐系统",
     "appid" : "__UNI__FEF0F17",
     "description" : "",
     "versionName" : "1.0.0",
@@ -52,7 +52,10 @@
     "mp-weixin" : {
         "appid" : "wxc86fe5b160289315",
         "setting" : {
-            "urlCheck" : false
+            "urlCheck" : true,
+            "postcss" : true,
+            "minified" : true,
+            "es6" : true
         },
         "usingComponents" : true
     },
@@ -68,5 +71,12 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "2"
+    "vueVersion" : "2",
+    "h5" : {
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
+        }
+    }
 }
