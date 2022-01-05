@@ -16,3 +16,4 @@ export function isLogin(){
 	}
 	return open_id
 }
+

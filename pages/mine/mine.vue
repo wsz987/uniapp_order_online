@@ -20,7 +20,6 @@
 <style lang="scss" scoped>
 .text{
 	width: 100%;
-	height: 100%;
 	margin-top: 40rpx;
 	font-weight: bold;
 	font-size: 200rpx;

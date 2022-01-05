@@ -43,7 +43,7 @@
 			handleLogin() {
 				this.$refs['loginFormRef'].validate().then(async res => {
 					const {status,userid,avatar,username} = await login(this.loginForm)
-					status && uni.setStorageSync('open_id', userid);
+					status && uni.setStorageSync('open_id', userid) && uni.setStorageSync('username', username)
 					this.setUser({userid,avatar,username})
 					setTimeout(()=>status && uni.navigateBack(),1000)
 				})
