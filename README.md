@@ -1,8 +1,6 @@
 ### 预览
 
-<img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/home.png?raw=true" alt="home.png" style="zoom:80%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/menu.png?raw=true" alt="menu.png" style="zoom:80%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/cart.png?raw=true" alt="cart.png" style="zoom:80%;" />
-
-<img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/order.png?raw=true" alt="order.png" style="zoom:80%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/mine.png?raw=true" alt="mine.png" style="zoom:80%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/login.png?raw=true" alt="login.png" style="zoom:80%;" />
+<img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/home.png?raw=true" alt="home.png" style="zoom:70%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/menu.png?raw=true" alt="menu.png" style="zoom:70%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/cart.png?raw=true" alt="cart.png" style="zoom:70%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/order.png?raw=true" alt="order.png" style="zoom:70%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/mine.png?raw=true" alt="mine.png" style="zoom:70%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/login.png?raw=true" alt="login.png" style="zoom:70%;" />
 
 #### 待解决/bug
 
