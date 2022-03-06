@@ -8,7 +8,7 @@
 				<u--input v-model="loginForm.password" border="bottom" password clearable></u--input>
 			</u-form-item>
 		</u--form>
-		<u-button color="#FF7E00" text="登录" @click="handleLogin"></u-button>
+		<u-button color="#FF7E00" text="登录 / 注册" @click="handleLogin"></u-button>
 		<u-button type="success" text="微信授权" @click="wxLogin" openType="getUserInfo"></u-button>
 	</view>
 </template>

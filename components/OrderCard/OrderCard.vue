@@ -33,11 +33,6 @@
 				default: {}
 			}
 		},
-		data() {
-			return {
-				
-			};
-		},
 		methods:{
 			handleGoodsImgDataFormat(data){
 				return data.reduce((acc,item)=>{

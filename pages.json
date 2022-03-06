@@ -2,6 +2,7 @@
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/index/index",
+			"name":"index",
 			"style": {
 				"navigationBarTitleText": "在线饮品下单",
 				"navigationStyle": "custom",
@@ -9,6 +10,7 @@
 			}
 		}, {
 			"path": "pages/mine/mine",
+			"name":"mine",
 			"style": {
 				"navigationBarTitleText": "我的",
 				"navigationStyle": "custom",
@@ -17,6 +19,7 @@
 
 		}, {
 			"path": "pages/goods/goods",
+			"name":"goods",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
@@ -24,6 +27,7 @@
 
 		}, {
 			"path": "pages/order/order",
+			"name":"order",
 			"style": {
 				"navigationBarTitleText": "订单",
 				"enablePullDownRefresh": false
@@ -31,6 +35,7 @@
 
 		}, {
 			"path": "pages/menu/menu",
+			"name":"menu",
 			"style": {
 				"navigationBarTitleText": "菜单",
 				"enablePullDownRefresh": false
@@ -39,6 +44,7 @@
 		}
 	    ,{
             "path" : "pages/login/login",
+			"name":"login",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
@@ -48,6 +54,7 @@
         }
         ,{
             "path" : "pages/shopping_cart/shopping_cart",
+			"name":"shopping_cart",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "购物车",
@@ -58,7 +65,7 @@
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "在线点餐小程序",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},

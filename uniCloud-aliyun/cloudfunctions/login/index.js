@@ -1,6 +1,12 @@
 'use strict';
 const db = uniCloud.database()
 exports.main = async (event, context) => {
+	// url 请求解析
+	if(event.queryStringParameters){
+		event =event.queryStringParameters
+	}
+	
+	
 	const {
 		affectedDocs,
 		data

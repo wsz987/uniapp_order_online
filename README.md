@@ -59,3 +59,10 @@ npm i
 options: { styleIsolation: 'shared' },
 ```
 
+
+
+# uni-simple-router
+
+- [插件市场](https://ext.dcloud.net.cn/plugin?id=578)
+- [官方文档](https://hhyang.cn/v2/start/quickstart.html)
+
