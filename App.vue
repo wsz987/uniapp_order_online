@@ -1,9 +1,10 @@
 <script>
-	import getConfig from './api/getConfig'
+	import api from '@/api'
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
 			this.$store.dispatch('config/getConfig')
+			api.checkSession()
 		},
 		onShow: function() {
 			console.log('App Show')

@@ -121,4 +121,8 @@
 	.disabled {
 		background-color: #cccccc !important;
 	}
+	
+	/deep/ .u-image__loading {
+		height: 100% !important;
+	}
 </style>

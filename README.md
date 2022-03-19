@@ -12,19 +12,19 @@
 
 #### 待立项	
 
-- 主页
-- 商品搜索
-- 购物车可选择商品支付
-- 商品详情页面
-- 商品可选料 等参数/规格下单
-- 微信登录功能 用户信息获取
-- 我的页面
-- 支付系统
-- 店内座位扫码下单完善
-- 自提排队系统
-- 后台管理系统
-- 后端接口配置 权限校验完善  `uni-config-center`
-- 后台管理系统
+- [ ] 主页
+- [ ] 商品搜索
+- [ ] 购物车可选择商品支付
+- [ ] 商品详情页面
+- [ ] 商品可选料 等参数/规格下单
+- [x] 微信登录功能 用户信息获取
+- [ ] 我的页面
+- [ ] 支付系统
+- [ ] 店内座位扫码下单完善
+- [ ] 自提排队系统
+- [ ] 后台管理系统
+- [ ] 后端接口配置 权限校验完善  `uni-config-center`
+- [ ] 后台管理系统
 
 
 
@@ -44,13 +44,33 @@ https://bsppub.oss-cn-shanghai.aliyuncs.com   // 云存储
 
 `uniCloud-aliyun/database/`  下 `db_init.json `  及  `*.schema.json`  上传初始化
 
-
-
 ```
 npm install uview-ui 
 or
 npm i
 ```
+
+
+
+#### config.js配置
+
+- [uni-config-center](https://uniapp.dcloud.net.cn/uniCloud/uni-config-center.html)  管理
+- [uni-id](https://uniapp.dcloud.net.cn/uniCloud/uni-id.html)  所需` appid`  及 `appsecret`等参数于 `cloudfunctions\common\uni-config-center\uni-id\config.js` 配置
+
+
+#### getAccessToken
+
+- 存储在`config`数据表 
+
+- 调用  `cloudfunctions\getAccessToken`  云函数进行更新，accessToken 2小时有效期，刷新后5分钟缓冲期后失效。
+
+  可在 `云控制台/云函数/函数列表/getAccessToken` ， `操作/详情/定时器触发/编辑` 配置定时cron，如每一小时定时更新。
+
+  ```
+  [
+    "cron:0 0 0/1 * * ?"
+  ]
+  ```
 
 
 

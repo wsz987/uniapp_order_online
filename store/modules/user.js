@@ -3,6 +3,12 @@ const state = () => ({
 	avatar: '',
 	username: '',
 	position: '',
+	iv: '',
+	openid: '',
+	sessionKey: '',
+	token: '',
+	tokenExpired: '',
+	encryptedData:""
 })
 const getters = {
 	getUserName: state => {
@@ -21,7 +27,8 @@ const getters = {
 			return avatar
 		}
 	},
-	getPosition: state => state.position
+	getPosition: state => state.position,
+	sessionKey: state => state.sessionKey,
 }
 
 const mutations = {
@@ -29,10 +36,23 @@ const mutations = {
 		for (let key of Object.keys(info)) {
 			state[key] = info[key]
 			let data = info[key]
-			if(key == 'userid') key='open_id'
+			// if (key == 'userid') key = 'open_id'
 			uni.setStorageSync(`${key}`, data)
 		}
 	},
+	getState(state, keys){
+		if(typeof(keys)=='string') keys = [keys]
+		let result = {}
+		for(let key of keys){
+			if(!key) continue
+			let data = state[key]
+			console.log(state)
+			if(!data) continue
+			result[key] = data
+		}
+		console.log('getState',result)
+		return result
+	}
 }
 
 const actions = {}

@@ -8,6 +8,7 @@
 					<text class="grid-text" style="color:#FF7E00">{{baseListItem.title}}</text>
 				</u-grid-item>
 			</u-grid>
+			<getPhoneNumberBtn/>
 		</view>
 	</view>
 </template>
