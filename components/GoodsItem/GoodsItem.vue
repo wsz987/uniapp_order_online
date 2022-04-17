@@ -1,49 +1,72 @@
 <template>
-	<view class="goods-item" @click="toGoods(info)">
-		<u--image :src="info.goods_imgs[0]" :lazy-load="true" radius='5'
-			width='80' mode="widthFix">
-		</u--image>
-		<view class="content">
-			<view class="name">
-				{{info.goods_name}}
-			</view>
-			<view class="price">
-				￥{{ $price(info.goods_price) }}
-			</view>
-			<view class="buy">
-				<view :class="['reduce','btn',getGoodsCartCount(info._id)==0 ?'disabled':'']" @click.stop="reduceCountByID(info._id)">
-					-
+	<view class="swipe">
+		<u-swipe-action>
+			<u-swipe-action-item :options="swipeOptions" :disabled="!swipe" :show="false" @click="handleSwipeAction($event,info._id)">
+				<view class="goods-item" @click="toGoods(info)">
+					<u--image :src="info.goods_imgs[0]" lazy-load radius='5' width='80' mode="aspectFit" @click.native="previewImage(info.goods_imgs[0])">
+					</u--image>
+					<view class="content">
+						<view class="name">
+							{{info.goods_name}}
+							<slot name="edit" v-bind:info="info"></slot>
+						</view>
+						<view class="price">
+							￥{{ $price(info.goods_price) }}
+						</view>
+						<view class="buy">
+							<view :class="['reduce','btn',getGoodsCartCount(info._id)==0 ?'disabled':'']"
+								@click.stop="reduceCountByID(info._id)">
+								-
+							</view>
+							<view class="count">
+								{{getGoodsCartCount(info._id)}}
+							</view>
+							<view class="add btn" @click.stop="addCart(info)">
+								+
+							</view>
+						</view>
+					</view>
 				</view>
-				<view class="count">
-					{{getGoodsCartCount(info._id)}}
-				</view>
-				<view class="add btn" @click.stop="addCart(info)">
-					+
-				</view>
-			</view>
-		</view>
+			</u-swipe-action-item>
+		</u-swipe-action>
 	</view>
 </template>
 
 <script>
-	import { mapMutations, mapGetters} from 'vuex'
+	import {
+		mapActions,
+		mapMutations,
+		mapGetters
+	} from 'vuex'
 	import setStorage from '@/mixin/setStorage.js'
 	export default {
 		name: "GoodsItem",
-		mixins:[setStorage],
+		mixins: [setStorage],
+		options: { styleIsolation: 'shared' },
 		props: {
 			info: {
 				type: Object,
 				default: {}
+			},
+			swipe:{
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
 			return {
-				count: 0
+				count: 0,
+				swipeOptions: [{
+					text: '删除',
+					style: {
+						backgroundColor: '#f56c6c'
+					}
+				}]
 			};
 		},
 		methods: {
-			...mapMutations('shoppingCart',['addCart','reduceCountByID']),
+			...mapMutations('shoppingCart', ['addCart', 'reduceCountByID']),
+			...mapActions('shoppingCart',['removeItem']),
 			toGoods(data) {
 				// uni.navigateTo({
 				// 	url: '/pages/goods/goods',
@@ -51,6 +74,27 @@
 				// 		 res.eventChannel.emit('goodsData', { data })
 				// 	}
 				// })
+			},
+			handleSwipeAction({index},ID){
+				switch(index){
+					case 0:
+						this.removeItem(ID)
+					break
+				}
+			},
+			previewImage(url){
+				uni.previewImage({
+					urls: [url],
+					longPressActions: {
+						itemList: ['发送给朋友', '保存图片', '收藏'],
+						success: function(data) {
+							console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+						},
+						fail: function(err) {
+							console.log(err.errMsg);
+						}
+					}
+				});
 			}
 		},
 		computed: {
@@ -59,36 +103,50 @@
 					return (val * 0.01).toFixed(2)
 				}
 			},
-			...mapGetters('shoppingCart',['getGoodsCartCount'])
+			...mapGetters('shoppingCart', ['getGoodsCartCount'])
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
+	.swipe {
+		margin-bottom: 10rpx;
+		overflow: hidden;
+		border-radius: 18rpx;
+		box-shadow: 0 5rpx 8rpx rgba(0, 0, 0, .3);
+	}
+	/deep/ .u-swipe-action-item__content{
+		z-index: 99 !important;
+	}
+	
+	/deep/.u-swipe-action-item__right{
+		z-index: 2 !important;
+	}
+
 	.goods-item {
 		height: 180rpx !important;
 		display: flex;
 		flex-direction: row;
-		margin-bottom: 10rpx;
 		padding: 15rpx 20rpx;
 		box-sizing: border-box;
-		border-radius: 18rpx;
-		box-shadow: 0 5rpx 8rpx rgba(0, 0, 0, .3);
-		/deep/.u-image{
+
+		/deep/.u-image {
 			height: 100% !important;
 			// height: auto !important;
+			min-width: 160rpx !important;
 		}
 
 		.content {
 			margin-left: 20rpx;
 			width: 100%;
-			position: relative;	
+			position: relative;
 
 			.name {
 				font-weight: bolder;
+				display: flex;
 			}
-			
-			.price{
+
+			.price {
 				position: absolute;
 				bottom: 0;
 				color: #555555;
@@ -121,7 +179,7 @@
 	.disabled {
 		background-color: #cccccc !important;
 	}
-	
+
 	/deep/ .u-image__loading {
 		height: 100% !important;
 	}

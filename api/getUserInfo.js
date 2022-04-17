@@ -10,6 +10,9 @@ export default function() {
 					avatar: userInfo.avatarUrl
 				})
 				resolve(userInfo)
+			},
+			fail: err => {
+				resolve(false)
 			}
 		})
 	})

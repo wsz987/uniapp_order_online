@@ -1,7 +1,7 @@
 <template>
 	<view class="shopping-cart">
 		<u-empty mode="car" icon="/static/car.png" v-if="isEmpty"></u-empty>
-		<GoodsItem :info='item' v-for="(item,index) in getCart" :key='item._id' v-else />
+		<GoodsItem :info='item' v-for="(item,index) in getCart" :key='item._id' v-else swipe/>
 		<!-- <view class="total-price" v-else>
 			￥{{$price(getTotalPrice)}}
 		</view> -->

@@ -137,7 +137,7 @@
 	}
 
 	.nav-right {
-		width: 70%;
+		width: 75%;
 		padding: 5rpx 10rpx;
 		/* padding-top: 11px; */
 	}

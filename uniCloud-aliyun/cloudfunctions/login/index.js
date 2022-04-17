@@ -1,12 +1,15 @@
 'use strict';
 const uniID = require('uni-id')
 const db = uniCloud.database()
+const DB_USER = db.collection('user')
 exports.main = async (event, context) => {
 	// url 请求解析
 	let res = {}
 	switch (event.provider) {
 		case 'weixin':
 			res = await uniID.loginByWeixin({code:event.code});
+			const {affectedDocs} = await DB_USER.where({openid:res.openid}).get()
+			!affectedDocs && DB_USER.add({openid:res.openid,createDate:new Date().getTime()})
 			break;
 		default:
 			res = {
@@ -15,7 +18,7 @@ exports.main = async (event, context) => {
 			}
 			break;
 	}
-	console.log("res",res)
+	console.log("login",res)
 	return {
 		code: 200,
 		data:res

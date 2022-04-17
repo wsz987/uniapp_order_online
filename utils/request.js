@@ -12,7 +12,8 @@ export default function(url,data={}) {
 					title: msg ? msg : 'api fail',
 					icon:'none',
 					duration: 2000
-				}) && reject('api fail')
+				}) && isLogin(data.code)
+				//&& reject('api fail')
 				code == 200 && msg && uni.showToast({
 					title: msg,
 					duration: 1500

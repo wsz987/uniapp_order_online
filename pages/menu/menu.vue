@@ -1,8 +1,13 @@
 <template>
 	<view>
 		<qiyue-category :categoryList="getMenuTypes" @categoryMainClick="categoryMainClick" v-slot="{ goodsData }">
+			<GoodsManage v-if="checkRole('ADMIN')"/>
 			<view v-for="(item,index) in goodsData" :key='item._id'>
-				<GoodsItem :info='item' />
+				<GoodsItem :info='item'>
+					<template #edit="{info}">
+						<GoodsManage :info="info" v-if="checkRole('ADMIN')" :key="keyDom(info._id)"/>
+					</template>
+				</GoodsItem>
 			</view>
 		</qiyue-category>
 	</view>
@@ -20,8 +25,11 @@
 				goods: []
 			};
 		},
-		mounted() {
+		created() {
 			this.handleMenuData()
+		},
+		mounted() {
+			uni.$on("reloadMenuData",()=>this.handleMenuData())
 		},
 		methods: {
 			...mapActions('shoppingCart',['updateCart']),
@@ -36,12 +44,15 @@
 		},
 		watch:{
 			goods(val,oval){
-				console.log('menu',val,oval)
+				// console.log('menu',val,oval)
 			}
 		},
 		computed: {
 			...mapGetters('config', [
 				'getGoods'
+			]),
+			...mapGetters('user', [
+				'checkRole'
 			]),
 			getMenuTypes() {
 				const data = Array.from(this.getGoods.goods_types).map(item => {
@@ -53,6 +64,13 @@
 					return item
 				})
 				return data
+			},
+			keyDom(){
+				return key=>{
+					this.$nextTick(()=>{
+						return key
+					})
+				}
 			}
 		}
 	}

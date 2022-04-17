@@ -1,14 +1,17 @@
 import getConfig from '@/api/getConfig'
 const state = () => ({
 	goods_params: [],
-	goods_types: []
+	goods_types: [],
+	Upload:{}
 })
 const getters = {
 	getGoods: state => ({
 		"goods_params": state.goods_params,
 		'goods_types': state.goods_types
 	}),
-	getGoodsParams: state =>  state.goods_params
+	getGoodsParams: state =>  state.goods_params,
+	getGoodsTypes: state =>  state.goods_types,
+	getUpload:state =>  state.Upload
 }
 
 const mutations = {

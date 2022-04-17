@@ -15,7 +15,8 @@
 		},
 		methods:{
 			decryptPhoneNumber(event){
-				api.getPhoneNumber(event)
+				api.wxlogin()
+				// api.getPhoneNumber(event)
 			}
 		}
 	}

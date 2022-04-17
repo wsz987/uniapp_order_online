@@ -8,7 +8,10 @@ const state = () => ({
 	sessionKey: '',
 	token: '',
 	tokenExpired: '',
-	encryptedData:""
+	encryptedData:"",
+	permission:"",
+	role:[],
+	uid:''
 })
 const getters = {
 	getUserName: state => {
@@ -29,6 +32,20 @@ const getters = {
 	},
 	getPosition: state => state.position,
 	sessionKey: state => state.sessionKey,
+	get:state=> key => {
+		let value = state[key]
+		if (value) return value
+		else {
+			value = uni.getStorageSync(key)
+			if(value) state[key] = value
+			else value = undefined
+			return value
+		}
+	},
+	checkRole:state=> role => {
+		const result = state.role.indexOf(role)>-1 ? true : false
+		return result
+	}
 }
 
 const mutations = {
@@ -38,6 +55,7 @@ const mutations = {
 			let data = info[key]
 			// if (key == 'userid') key = 'open_id'
 			uni.setStorageSync(`${key}`, data)
+			if (key == 'token') uni.setStorageSync(`uni_id_token`, data)
 		}
 	},
 	getState(state, keys){
@@ -55,7 +73,13 @@ const mutations = {
 	}
 }
 
-const actions = {}
+const actions = {
+	async getCurrentUserInfo({ commit}){
+		const info = await uniCloud.getCurrentUserInfo()
+		console.log("info",info)
+		commit('setUser',info)
+	}
+}
 
 export default {
 	state,

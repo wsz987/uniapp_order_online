@@ -7,10 +7,14 @@
 			<view class="price">
 				￥{{$price(price)}}
 			</view>
-			<view class="submit-btn" @click="submitOrder">
+			<!-- <view class="submit-btn" @click="submitOrder">
 				购买
+			</view> -->
+			<view class="submit-btn" @click="submitOrderSubscribe">
+				预约
 			</view>
 		</view>
+		<OrderSubscribe @complete="complete" :show="show" @close="show=false"/>
 	</view>
 </template>
 
@@ -30,24 +34,43 @@
 		},
 		data() {
 			return {
-
+				show:false
 			};
 		},
 		methods: {
 			...mapActions('shoppingCart', ['updateCart']),
-			async submitOrder() {
+			async submitOrder(info={}) {
+				// if(this.getCart.length == 0 ) return uni.showToast({
+				// 	icon:'none',
+				// 	title:"请添加购物车"
+				// })
 				uni.showLoading({
 					title: '订单提交中'
 				})
-				const success = await add_order()
+				const success = await add_order(info)
+				if(!success) return
 				this.updateCart(success)
 				uni.switchTab({
 					url: '/pages/order/order'
 				})
+			},
+			submitOrderSubscribe(){
+				if(this.getCart.length == 0 ) return uni.showToast({
+					icon:'none',
+					title:"请添加购物车"
+				})
+				this.show=true
+			},
+			complete(e){
+				this.show=false
+				if(!e) return
+				console.log("complete",e)
+				this.submitOrder(e)
 			}
 		},
 		computed: {
-			...mapGetters('user', ['getPosition'])
+			...mapGetters('user', ['getPosition']),
+			...mapGetters('shoppingCart', ['getCart'])
 		}
 	}
 </script>

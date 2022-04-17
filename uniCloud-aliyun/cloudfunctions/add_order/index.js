@@ -14,16 +14,22 @@ exports.main = async (event, context) => {
 		position,
 		order_data:data,
 		create_date:new Date().getTime(),
-		price:data.reduce((total,{goods_price,count})=>total+goods_price*count,0)
+		price:data.reduce((total,{goods_price,count})=>total+goods_price*count,0),
+		...event.info
 	})
 	console.log(isOrder)
 	
-	if(!isOrder) return { code:403, msg:'订购错误' }
+	if(!isOrder) return { code:403, msg:'订单错误' }
 	
 	const result = data.reduce((success,{_id,count})=>{
 		success.push({_id,count})
 		return success
 	},[])
+	
+	uniCloud.callFunction({
+	    name: "WxPusher",
+	    data: {...event,data}
+	})
 	//返回数据给客户端
 	return {
 		code:200,

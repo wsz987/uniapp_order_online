@@ -73,6 +73,12 @@ const actions = {
 			}
 			return item
 		}) && commit('setStorage',state)
+	},
+	removeItem({ state,commit },id){
+		const isFind = state.list.find(item=>item._id==id)
+		if(!isFind) return 
+		isFind.count = 0
+		commit('setStorage',state)
 	}
 }
 export default {

@@ -4,7 +4,7 @@
 		onLaunch: function() {
 			console.log('App Launch')
 			this.$store.dispatch('config/getConfig')
-			api.checkSession()
+			this.$store.dispatch('user/getCurrentUserInfo')
 		},
 		onShow: function() {
 			console.log('App Show')

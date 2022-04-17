@@ -14,8 +14,9 @@
 
 <script>
 	import { mapGetters } from 'vuex'
-	import api from '@/api'
-	const {getUserInfo,wxlogin} = api
+	import { isLogin } from "@/utils/validate.js"
+	// import api from '@/api'
+	// const {getUserInfo,wxlogin} = api
 	export default {
 		name:"UserCard",
 		props: {
@@ -34,16 +35,16 @@
 		},
 		methods:{
 			click() {
-				// this.$emit('click')
-				// #ifdef MP-WEIXIN
-					wxlogin()
-					getUserInfo()
-				// #endif
-				// #ifndef MP-WEIXIN
-				uni.navigateTo({
-					url: '/pages/login/login',
-				})
-				// #endif
+				isLogin()
+				// // #ifdef MP-WEIXIN
+				// 	wxlogin()
+				// 	getUserInfo()
+				// // #endif
+				// // #ifndef MP-WEIXIN
+				// uni.navigateTo({
+				// 	url: '/pages/login/login',
+				// })
+				// // #endif
 			}
 		},
 		computed:{
