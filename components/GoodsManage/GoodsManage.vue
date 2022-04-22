@@ -13,7 +13,7 @@
 				<!-- 注意，如果需要兼容微信小程序，最好通过setRules方法设置rules规则 -->
 				<u--form labelPosition="left" :model="goods" ref="form1">
 					<u-form-item label="名称" prop="goods_name" borderBottom required>
-						<u--input v-model="goods.goods_name" border="none" clearable></u--input>
+						<u-input v-model="goods.goods_name" border="none" clearable></u-input>
 					</u-form-item>
 					<u-form-item label="分类" prop="goods_type_id" borderBottom @click="showType = true" required>
 						<u--input :value="getTypeName(goods.goods_type_id)" disabled disabledColor="#fff"
@@ -21,8 +21,8 @@
 						</u--input>
 						<u-icon slot="right" name="arrow-right"></u-icon>
 					</u-form-item>
-					<u-form-item label="价格(分)" prop="goods_price" borderBottom required>
-						<u--input suffixIcon="rmb" clearable v-model="goods.goods_price" type="number"></u--input>
+					<u-form-item label="价格" prop="goods_price" borderBottom required>
+						<u-input suffixIcon="rmb" v-model="goods.goods_price" type="number" clearable></u-input>
 					</u-form-item>
 					<u-form-item label="图片" borderBottom ref="imgs" required prop="goods_imgs">
 						<!-- <u--image :src="src" width="80px" height="80px" v-for="(item,index) in goods.goods_imgs"></u--image> -->
@@ -45,10 +45,11 @@
 
 <script>
 	import {
-		mapGetters
+		mapGetters,mapActions
 	} from 'vuex'
 	import uuid from "@/utils/uuid"
 	import api from "@/api"
+	import { isLogin } from '@/utils/validate'
 	export default {
 		name: "GoodsManage",
 		options: {
@@ -83,27 +84,28 @@
 					},
 					"goods_price": {
 						required: true,
+						type: 'number',
 						message: '请填写商品价格',
 						trigger: ['blur', 'change']
 					},
 					// "goods_imgs": {
 					// 	required: true,
+					// 	type: 'array',
 					// 	message: '请添加商品图片',
 					// 	trigger: ['blur', 'change']
 					// },
-					// "goods_type_id": {
-					// 	required: true,
-					// 	message: '请选择商品分类',
-					// 	trigger: ['blur', 'change']
-					// }
+					"goods_type_id": {
+						required: true,
+						message: '请选择商品分类',
+						type: 'number',
+						trigger: ['blur', 'change']
+					}
 				}
 			};
 		},
 		created() {
-			console.log('created')
 			if(this.info){
-				let data = JSON.parse(JSON.stringify(this.info))
-				this.goods = {...data,goods_price:data*0.01}
+				this.goods = JSON.parse(JSON.stringify(this.info))
 			}
 		},
 		mounted() {
@@ -112,29 +114,31 @@
 			// #endif
 		},
 		methods: {
+			...mapActions('user',['tokenExpiredCheck']),
 			delGoods(id){
-				uni.showModal({
-					title: '是否删除商品',
-					success:async res=> {
-						if (res.confirm) {
-							console.log('用户点击确定');
-							const res = await api.delGoods(id)
-							res && uni.$emit("reloadMenuData")
-							this.show=false
-						} else if (res.cancel) {
-							// console.log('用户点击取消');
+				isLogin(()=>{
+					uni.showModal({
+						title: '是否删除商品',
+						success:async res=> {
+							if (res.confirm) {
+								console.log('用户点击确定');
+								const res = await api.delGoods(id)
+								res && uni.$emit("reloadMenuData")
+								this.show=false
+							} else if (res.cancel) {
+								// console.log('用户点击取消');
+							}
 						}
-					}
-				});
+					});
+				})
 			},
 			handleSelect(e) {
 				this.goods.goods_type_id = e.goods_type_id
 			},
-			handlePopup(data) {
-				this.show = true
+			async handlePopup(data) {
+				isLogin(()=>this.show = true)
 			},
 			deletePic(event) {
-				console.log('deletePic', event)
 				let { url } = event.file
 				if(url){
 					if(url.includes("localhost")){}
@@ -152,12 +156,8 @@
 			uploadFilePromise(img, index = 0) {
 				return new Promise((resolve, reject) => {
 					let imgs_length = this.fileList.length
-					let {
-						url
-					} = img
-					
+					let { url } = img
 					let arr = url.split('.')
-					console.log()
 					let result = uniCloud.uploadFile({
 						filePath: url,
 						cloudPath: uuid() +"."+ arr[arr.length - 1],
@@ -174,48 +174,49 @@
 				})
 			},
 			async uploadForm() {
-				this.$refs.form1.validate().then(async vali => {
-					if (this.fileList.length == 0) return uni.showToast({
-						icon: "none",
-						title: "请添加图片"
-					})
-					this.percentage = 0
-					const goods_imgs = await Promise.all(
-						this.fileList.map(async (item, index) => {
-							if(item.url.includes("https://vkceyugu.cdn.bspapp.com/")) return item.url
-							uni.showLoading({
-								title: "图片上传中"
-							})
-							const result = await this.uploadFilePromise(item, index)
-							if (result.success) {
-								item = result.fileID
-								// this.goods.fileList.push(result.fileID)
-								api.addFilesTemp({
-									url: result.fileID
-								})
-							}
-							return item
+				isLogin(()=>{
+					this.$refs.form1.validate().then(async vali => {
+						if (this.fileList.length == 0) return uni.showToast({
+							icon: "none",
+							title: "请添加图片"
 						})
-					)
-					uni.hideLoading()
-					uni.showLoading({
-						title: "服务器响应"
+						this.percentage = 0
+						const goods_imgs = await Promise.all(
+							this.fileList.map(async (item, index) => {
+								if(item.url.includes("https://vkceyugu.cdn.bspapp.com/")) return item.url
+								uni.showLoading({
+									title: "图片上传中"
+								})
+								const result = await this.uploadFilePromise(item, index)
+								if (result.success) {
+									item = result.fileID
+									// this.goods.fileList.push(result.fileID)
+									api.addFilesTemp({
+										url: result.fileID
+									})
+								}
+								return item
+							})
+						)
+						uni.hideLoading()
+						uni.showLoading({
+							title: "服务器响应"
+						})
+						console.log(goods_imgs)
+						const res = await api.setGoods({
+							content:{
+								...this.goods,
+								goods_imgs
+							},
+							delFileList:this.delFileList
+						})
+						res && uni.$emit("reloadMenuData")
+						this.$refs.form1.resetFields()
+						this.$refs.form1.clearValidate()
+						this.show=false
+					}).catch(errors => {
 					})
-					console.log(goods_imgs)
-					const res = await api.setGoods({
-						content:{
-							...this.goods,
-							goods_imgs
-						},
-						delFileList:this.delFileList
-					})
-					res && uni.$emit("reloadMenuData")
-					this.$refs.form1.resetFields()
-					this.$refs.form1.clearValidate()
-					this.show=false
-				}).catch(errors => {
 				})
-				
 			}
 		},
 		watch: {

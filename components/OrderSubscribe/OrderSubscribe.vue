@@ -88,7 +88,6 @@
 		},
 		methods: {
 			confirm(e) {
-				console.log(e)
 				this.info.detailed = e.value[0]
 				this.picker = false
 			},

@@ -11,23 +11,28 @@ export default function() {
 	uni.showLoading({
 		title: '登录中'
 	})
-	uni.login({
-		provider: 'weixin',
-		success: async (loginRes) => {
-			console.log(loginRes.code);
-			const wxloginRes = await request('login', {
-				type: "login",
-				provider: "weixin",
-				code: loginRes.code,
-			})
-			const {openid,sessionKey,token,tokenExpired} = wxloginRes
-			store.commit('user/setUser',{openid,sessionKey,token,tokenExpired})
-		},
-		fail:err =>  {
-			return uni.showToast({
-				icon:"none",
-				title:"请求失败!"
-			})
-		}
-	});
+	return new Promise((resolve,reject)=>{
+		uni.login({
+			provider: 'weixin',
+			success: async (loginRes) => {
+				console.log(loginRes.code);
+				const wxloginRes = await request('login', {
+					type: "login",
+					provider: "weixin",
+					code: loginRes.code,
+				})
+				const {openid,sessionKey,token,tokenExpired} = wxloginRes
+				store.commit('user/setUser',{openid,sessionKey,token,tokenExpired})
+				resolve(true)
+			},
+			fail:err =>  {
+				uni.showToast({
+					icon:"none",
+					title:"请求失败!"
+				})
+				resolve(false)
+			}
+		});
+	})
+	
 }

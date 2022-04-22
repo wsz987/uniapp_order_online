@@ -65,8 +65,8 @@
 			};
 		},
 		methods: {
-			...mapMutations('shoppingCart', ['addCart', 'reduceCountByID']),
-			...mapActions('shoppingCart',['removeItem']),
+			// ...mapMutations('shoppingCart', ['addCart', 'reduceCountByID']),
+			...mapActions('shoppingCart',['removeItem','addCart', 'reduceCountByID']),
 			toGoods(data) {
 				// uni.navigateTo({
 				// 	url: '/pages/goods/goods',
@@ -114,13 +114,11 @@
 		overflow: hidden;
 		border-radius: 18rpx;
 		box-shadow: 0 5rpx 8rpx rgba(0, 0, 0, .3);
-	}
-	/deep/ .u-swipe-action-item__content{
-		z-index: 99 !important;
+		z-index: 100 !important;
 	}
 	
 	/deep/.u-swipe-action-item__right{
-		z-index: 2 !important;
+		z-index: -1 !important;
 	}
 
 	.goods-item {
@@ -133,7 +131,6 @@
 		/deep/.u-image {
 			height: 100% !important;
 			// height: auto !important;
-			min-width: 160rpx !important;
 		}
 
 		.content {

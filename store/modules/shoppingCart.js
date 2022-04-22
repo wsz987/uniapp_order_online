@@ -79,7 +79,20 @@ const actions = {
 		if(!isFind) return 
 		isFind.count = 0
 		commit('setStorage',state)
-	}
+	},
+	async addCart({state}, data){
+		isLogin(()=>{
+			const isFind = state.list.find(item=>item._id==data._id)
+			!isFind && state.list.push({...data,count:1})
+			isFind && isFind.count++ 
+		})
+	},
+	async reduceCountByID({state}, id) {
+		if(!await isLogin()) return
+		const isFind = state.list.find(item=>item._id==id)
+		if(!isFind) return 
+		isFind && isFind.count>0 && isFind.count--
+	},
 }
 export default {
 	state,

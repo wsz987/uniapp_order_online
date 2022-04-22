@@ -36,10 +36,6 @@
 		methods:{
 			click() {
 				isLogin()
-				// // #ifdef MP-WEIXIN
-				// 	wxlogin()
-				// 	getUserInfo()
-				// // #endif
 				// // #ifndef MP-WEIXIN
 				// uni.navigateTo({
 				// 	url: '/pages/login/login',

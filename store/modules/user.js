@@ -1,3 +1,4 @@
+import api from '@/api'
 const state = () => ({
 	userid: '',
 	avatar: '',
@@ -76,8 +77,17 @@ const mutations = {
 const actions = {
 	async getCurrentUserInfo({ commit}){
 		const info = await uniCloud.getCurrentUserInfo()
-		console.log("info",info)
 		commit('setUser',info)
+	},
+	async tokenExpiredCheck({state}){
+		let tokenExpired = uni.getStorageSync('tokenExpired')
+		if(!tokenExpired) return false
+		tokenExpired = tokenExpired - ''
+		if(tokenExpired<new Date().getTime()) {
+			await uni.clearStorageSync();
+			return false
+		}
+		return true
 	}
 }
 

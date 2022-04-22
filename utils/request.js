@@ -1,5 +1,5 @@
 import handleCode from "@/utils/handleCode"
-import { isLogin } from '@/utils/validate'
+import { isLogin,responseCode } from '@/utils/validate'
 export default function(url,data={}) {
 	// isLogin()
 	return new Promise((reslove,reject) => {
@@ -12,7 +12,8 @@ export default function(url,data={}) {
 					title: msg ? msg : 'api fail',
 					icon:'none',
 					duration: 2000
-				}) && isLogin(data.code)
+				}) && responseCode(data.code)
+				// isLogin(data.code)
 				//&& reject('api fail')
 				code == 200 && msg && uni.showToast({
 					title: msg,

@@ -8,7 +8,7 @@ exports.main = async (event, context) => {
 	}).get()
 	
 	try{
-		result = await uniCloud.deleteFile(data[0].goods_imgs)
+		result = await uniCloud.deleteFile({fileList:data[0].goods_imgs})
 		await collection.where({
 		  _id:data[0]._id
 		}).remove()

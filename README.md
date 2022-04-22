@@ -2,9 +2,19 @@
 
 <img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/home.png?raw=true" alt="home.png" style="zoom:50%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/menu.png?raw=true" alt="menu.png" style="zoom:50%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/cart.png?raw=true" alt="cart.png" style="zoom:50%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/order.png?raw=true" alt="order.png" style="zoom:50%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/mine.png?raw=true" alt="mine.png" style="zoom:50%;" /><img src="https://github.com/wsz987/uniapp_order_online/blob/main/static/preview/login.png?raw=true" alt="login.png" style="zoom:50%;" />
 
-#### 待解决/bug
+#### 近期更新
 
-- **小程序端 菜单页面商品列表 玄学 不渲染**    solt问题 疑似uni问题
+- 添加了管理员角色，简单的权限系统及 token校验
+- `菜单页面`集成了简单的商品管理功能
+- `购物车页面`商品可左滑显示 `删除按钮`，用于移除同类商品
+- `订单页面` 订单显示同类商品购买数量
+- 基于 [Wxpusher](https://github.com/wxpusher/wxpusher-client) 的公众号消息推送功能，适用于个人开发者/用户的实时消息提醒功能
+- 因个人需求，在原本订单提交的基础上加了预约时间的步骤，同时订单提交后有公众号消息提醒功能
+- 修复一些已知bug
+
+
+
+#### 待解决/bug
 
 - 菜单商品获取写入vuex  解决购物车数据需点击tabBar 菜单页面才能同步问题
 
@@ -25,6 +35,7 @@
 - [ ] 后台管理系统
 - [ ] 后端接口配置 权限校验完善  `uni-config-center`
 - [ ] 后台管理系统
+- [ ] 订单详细页面
 
 
 
@@ -58,6 +69,8 @@ npm i
 - [uni-id](https://uniapp.dcloud.net.cn/uniCloud/uni-id.html)  所需` appid`  及 `appsecret`等参数于 `cloudfunctions\common\uni-config-center\uni-id\config.js` 配置
 
 
+
+
 #### getAccessToken
 
 - 存储在`config`数据表 
@@ -71,6 +84,24 @@ npm i
     "cron:0 0 0/1 * * ?"
   ]
   ```
+
+
+
+##### 其他云函数说明
+
+- `WxPusher` 
+
+​		文档： https://github.com/wxpusher/wxpusher-client  获取 `appToken`  及 `uids`
+
+
+
+##### 管理员账户配置
+
+云数据库 数据表`uni-id-users` 对目标用户添加  具体查看 [uni-id文档](https://uniapp.dcloud.io/uniCloud/uni-id.html)  [#角色](https://uniapp.dcloud.io/uniCloud/uni-id.html#%E8%A7%92%E8%89%B2)  [#权限](https://uniapp.dcloud.io/uniCloud/uni-id.html#%E6%9D%83%E9%99%90)  [#相关api](https://uniapp.dcloud.io/uniCloud/uni-id.html#rbac-api)
+
+```
+"role": ["ADMIN"]
+```
 
 
 

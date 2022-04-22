@@ -1,9 +1,10 @@
 <script>
 	import api from '@/api'
 	export default {
-		onLaunch: function() {
+		onLaunch: async function() {
 			console.log('App Launch')
 			this.$store.dispatch('config/getConfig')
+			await this.$store.dispatch('user/tokenExpiredCheck')
 			this.$store.dispatch('user/getCurrentUserInfo')
 		},
 		onShow: function() {

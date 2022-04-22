@@ -64,7 +64,6 @@
 			complete(e){
 				this.show=false
 				if(!e) return
-				console.log("complete",e)
 				this.submitOrder(e)
 			}
 		},
