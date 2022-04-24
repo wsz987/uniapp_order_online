@@ -26,7 +26,7 @@ exports.main = async (event, context) => {
 		return success
 	},[])
 	
-	uniCloud.callFunction({
+	await uniCloud.callFunction({
 	    name: "WxPusher",
 	    data: {...event,data}
 	})

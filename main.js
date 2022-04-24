@@ -1,10 +1,9 @@
 import App from './App'
 
-import {router,RouterMount} from '@/router'
 import store from './store'
 import './plugins'
-
-Vue.use(router)
+import onShareAppMessage from '@/mixin/onShareAppMessage.js'
+Vue.mixin(onShareAppMessage);
 
 Vue.prototype.$store = store
 
@@ -16,10 +15,6 @@ const app = new Vue({
     ...App,
 	store
 })
-
-// #ifdef H5
-	RouterMount(app,router,'#app')
-// #endif
 
 app.$mount()
 // #endif

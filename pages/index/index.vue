@@ -79,16 +79,9 @@
 						// #endif
 						break
 					case 'shopping-cart':
-						// #ifdef H5
-						this.$Router.push({
-							name: 'shopping_cart'
-						})
-						// #endif
-						// #ifndef H5
 						uni.switchTab({
 							url: '/pages/shopping_cart/shopping_cart'
 						})
-						// #endif
 						break
 					case 'order':
 						uni.switchTab({

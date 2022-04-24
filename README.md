@@ -56,8 +56,6 @@ https://bsppub.oss-cn-shanghai.aliyuncs.com   // 云存储
 `uniCloud-aliyun/database/`  下 `db_init.json `  及  `*.schema.json`  上传初始化
 
 ```
-npm install uview-ui 
-or
 npm i
 ```
 
@@ -67,6 +65,7 @@ npm i
 
 - [uni-config-center](https://uniapp.dcloud.net.cn/uniCloud/uni-config-center.html)  管理
 - [uni-id](https://uniapp.dcloud.net.cn/uniCloud/uni-id.html)  所需` appid`  及 `appsecret`等参数于 `cloudfunctions\common\uni-config-center\uni-id\config.js` 配置
+- WxPusher 的 `appToken`  及 `uids` 配置，详见下方 ***其他云函数说明***
 
 
 
@@ -114,10 +113,4 @@ npm i
 options: { styleIsolation: 'shared' },
 ```
 
-
-
-# uni-simple-router
-
-- [插件市场](https://ext.dcloud.net.cn/plugin?id=578)
-- [官方文档](https://hhyang.cn/v2/start/quickstart.html)
 

@@ -1,9 +1,7 @@
 <template>
 	<view class="mine">
 		<UserCard></UserCard>
-		<view class="text">
-			大道至简
-		</view>
+		<AppList/>
 	</view>
 </template>
 
@@ -17,15 +15,8 @@
 	}
 </script>
 
-<style lang="scss" scoped>
-.text{
-	width: 100%;
-	margin-top: 40rpx;
-	font-weight: bold;
-	font-size: 200rpx;
-	display: flex;
-	color: $app-base-color;
-	align-items: center;
-	writing-mode: vertical-rl;
-}
+<style lang="scss" >
+	page {
+		background: #f6f4f5 !important;
+	}
 </style>

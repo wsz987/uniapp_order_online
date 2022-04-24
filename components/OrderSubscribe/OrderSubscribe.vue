@@ -22,6 +22,9 @@
 						</u-col>
 					</u-row>
 				</u-form-item>
+				<u-form-item label="备注" prop="remarks">
+					<u--textarea count  v-model="info.remarks" placeholder="备注内容" autoHeight></u--textarea>
+				</u-form-item>
 			</u--form>
 			<u-picker :show="picker" :columns="columns" @confirm="confirm" @cancel="picker=false"></u-picker>
 			<u-button color="#FF7E00" text="提交" @click="submit" class="submit-btn"></u-button>
@@ -50,7 +53,8 @@
 				info: {
 					detailed: "上午",
 					phone: '',
-					date: ""
+					date: "",
+					remarks:""
 				},
 				picker: false,
 				datetimepicker: false,

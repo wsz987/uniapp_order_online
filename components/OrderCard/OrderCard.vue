@@ -64,12 +64,10 @@
 </script>
 
 <style lang="scss" scoped>
-	$card-height:340rpx;
-	$content-height: 180rpx;
+	$img-height: 180rpx;
 
 	.order-card {
 		width: 100%;
-		// height: $card-height !important;
 		display: flex;
 		flex-direction: column;
 		margin-bottom: 10rpx;
@@ -99,16 +97,14 @@
 		}
 
 		.content {
-			height: $content-height;
 			display: flex;
 			flex-direction: row;
-			// justify-content: space-around;
 			.goods-item{
 				position: relative;
-				// .badge{
-				// 	bottom: 0;
-				// 	right: 0;
-				// }
+				/deep/.u-image {
+					margin-right: 10rpx !important;
+					height: $img-height !important;
+				}
 			}
 		}
 
@@ -131,11 +127,6 @@
 		/deep/ .u-divider {
 			margin: 0 !important;
 			// height: 40rpx;
-		}
-
-		/deep/ .u-image {
-			height: 100% !important;
-			margin-right: 10rpx !important;
 		}
 
 	}

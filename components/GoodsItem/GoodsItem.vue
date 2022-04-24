@@ -3,8 +3,8 @@
 		<u-swipe-action>
 			<u-swipe-action-item :options="swipeOptions" :disabled="!swipe" :show="false" @click="handleSwipeAction($event,info._id)">
 				<view class="goods-item" @click="toGoods(info)">
-					<u--image :src="info.goods_imgs[0]" lazy-load radius='5' width='80' mode="aspectFit" @click.native="previewImage(info.goods_imgs[0])">
-					</u--image>
+					<u-image :src="info.goods_imgs[0]" lazy-load radius='5' width='80' mode="aspectFit" @click.native="previewImage(info.goods_imgs[0])">
+					</u-image>
 					<view class="content">
 						<view class="name">
 							{{info.goods_name}}
@@ -65,7 +65,6 @@
 			};
 		},
 		methods: {
-			// ...mapMutations('shoppingCart', ['addCart', 'reduceCountByID']),
 			...mapActions('shoppingCart',['removeItem','addCart', 'reduceCountByID']),
 			toGoods(data) {
 				// uni.navigateTo({
@@ -76,6 +75,7 @@
 				// })
 			},
 			handleSwipeAction({index},ID){
+				console.log("handleSwipeAction")
 				switch(index){
 					case 0:
 						this.removeItem(ID)
@@ -114,11 +114,9 @@
 		overflow: hidden;
 		border-radius: 18rpx;
 		box-shadow: 0 5rpx 8rpx rgba(0, 0, 0, .3);
-		z-index: 100 !important;
 	}
-	
-	/deep/.u-swipe-action-item__right{
-		z-index: -1 !important;
+	/deep/ .u-swipe-action-item__content{
+		z-index: 999 !important;
 	}
 
 	.goods-item {
@@ -127,6 +125,7 @@
 		flex-direction: row;
 		padding: 15rpx 20rpx;
 		box-sizing: border-box;
+		// z-index: 999 !important;
 
 		/deep/.u-image {
 			height: 100% !important;
