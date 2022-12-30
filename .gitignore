@@ -2,5 +2,3 @@ node_modules/
 .project
 unpackage/
 .DS_Store
-uni_modules/uni-config-center/uniCloud/cloudfunctions/common/uni-config-center/uni-id/config.json
-uni_modules/uni-config-center/uniCloud/cloudfunctions/common/uni-config-center/wx-pusher/config.json
