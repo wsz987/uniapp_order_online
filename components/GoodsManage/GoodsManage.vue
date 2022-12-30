@@ -3,7 +3,7 @@
 		<view class="edit" @click="handlePopup(goods)" v-if="goods._id">
 			<u-icon name="edit-pen" color="#fff"></u-icon>
 		</view>
-		<u-button text="添加" color="#FF7E00" @click="handlePopup(goods)" v-else></u-button>
+		<u-button text="添加商品" color="#FF7E00" @click="handlePopup(goods)" v-else></u-button>
 		<button type="default"></button>
 		<u-popup :show="show" mode="bottom" :round="15" closeable @close="show=false" :closeOnClickOverlay="false">
 			<view class="title">

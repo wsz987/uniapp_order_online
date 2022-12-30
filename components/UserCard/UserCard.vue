@@ -36,11 +36,11 @@
 		methods:{
 			click() {
 				isLogin()
-				// // #ifndef MP-WEIXIN
-				// uni.navigateTo({
-				// 	url: '/pages/login/login',
-				// })
-				// // #endif
+				// #ifndef MP-WEIXIN
+				uni.navigateTo({
+					url: '/pages/login/login',
+				})
+				// #endif
 			}
 		},
 		computed:{

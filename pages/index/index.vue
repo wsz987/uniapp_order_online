@@ -1,6 +1,6 @@
 <template>
 	<view class="home">
-		<u-swiper :list="swiperList" indicator indicatorMode="line" circular height='280' class="swiper"></u-swiper>
+		<u-swiper :list="swiperList" indicator indicatorMode="line" circular height='280' class="swiper" key-name="image"></u-swiper>
 		<view class="content">
 			<u-grid border @click="handleGridClick">
 				<u-grid-item v-for="(baseListItem,baseListIndex) in gridData" :key="baseListIndex" bgColor="#fff">
@@ -9,7 +9,7 @@
 					<text class="grid-text" style="color:#FF7E00">{{baseListItem.title}}</text>
 				</u-grid-item>
 			</u-grid>
-			<getPhoneNumberBtn />
+			
 		</view>
 	</view>
 </template>

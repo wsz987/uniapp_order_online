@@ -15,12 +15,13 @@ export default function() {
 		uni.login({
 			provider: 'weixin',
 			success: async (loginRes) => {
-				console.log(loginRes.code);
+				// console.log(loginRes.code);
 				const wxloginRes = await request('login', {
 					type: "login",
 					provider: "weixin",
 					code: loginRes.code,
 				})
+				console.log(wxloginRes);
 				const {openid,sessionKey,token,tokenExpired} = wxloginRes
 				store.commit('user/setUser',{openid,sessionKey,token,tokenExpired})
 				resolve(true)

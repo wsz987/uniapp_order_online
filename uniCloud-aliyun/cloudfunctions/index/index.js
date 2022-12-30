@@ -8,7 +8,7 @@ exports.main = async (event, context) => {
 	return {
 		code:200,
 		data: {
-			swiper:swiper[0].index
+			swiper
 		}
 	}
 };

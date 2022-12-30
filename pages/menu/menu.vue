@@ -55,7 +55,7 @@
 				'checkRole'
 			]),
 			getMenuTypes() {
-				const data = Array.from(this.getGoods.goods_types).map(item => {
+				const data = this.getGoods.goods_types.map(item => {
 					item.key = item.goods_type_id
 					item.name = item.goods_type_name
 					item.subCategoryList = []

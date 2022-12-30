@@ -62,6 +62,16 @@
             }
             
         }
+        ,{
+            "path" : "pages/orderInfo/orderInfo",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"backgroundColor": "#F8F8F8"
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

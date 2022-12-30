@@ -3,206 +3,104 @@
 // 编写完毕后对本文件点右键，可按配置规则创建表和添加数据
 
 {
+	"config": {
+		"data": [{
+				"date": "2022-12-24 15:18:40",
+				"key": "accessToken",
+				"time": 1671866320102,
+				"value": ""
+			},
+			{
+				"key": "Upload",
+				"value": {
+					"Image": {
+						"maxCount": 1,
+						"multiple": true
+					},
+					"Video": []
+				}
+			}
+		]
+	},
 	"goods": {
 		"data": [{
-			"goods_name":"珍珠奶茶",
-			"goods_price":900,
-			"goods_type_id":1001,
-			"goods_params":[2001],
-			"goods_desc":"这是一杯奶茶",
-			"goods_details":"有珍珠，有奶，还有茶",
-			"goods_imgs":[]
-			
-		}],
-		"schema": {
-			"bsonType": "object",
-			"required": [],
-			"permission": {
-				"read": true,
-				"create": true,
-				"update": true,
-				"delete": false
-			},
-			"properties": {
-				"_id": {
-					"description": "ID，系统自动生成"
-				},
-				"goods_name": {
-					"bsonType": "string",
-					"trim": "both",
-					"description": "商品名称"
-				},
-				"goods_price": {
-					"bsonType": "int",
-					"description": "商品价格(分)"
-				},
-				"goods_count": {
-					"bsonType": "int",
-					"defaultValue": 99,
-					"description": "商品数量"
-				},
-				"goods_imgs": {
-					"bsonType": "array",
-					"defaultValue": [],
-					"arrayType": "string",
-					"description": "商品图片"
-				},
-				"goods_desc": {
-					"bsonType": "string",
-					"trim": "both",
-					"description": "商品描述"
-				},
-				"goods_details": {
-					"bsonType": "string",
-					"trim": "both",
-					"description": "商品详情"
-				},
-				"good_type_id": {
-					"bsonType": "int",
-					"description": "商品类型"
-				},
-				"goods_params": {
-					"bsonType": "array",
-					"defaultValue": [],
-					"arrayType": "int",
-					"description": "商品参数"
-				},
-				"create_date": {
-					"bsonType": "timestamp",
-					"forceDefaultValue": {
-						"$env": "now"
-					},
-					"description": "商品创建时间"
-				}
-			}
-		}
+			"goods_name": "珍珠奶茶",
+			"goods_price": 900,
+			"goods_type_id": 1001,
+			"goods_params": [2001],
+			"goods_desc": "这是一杯奶茶",
+			"goods_details": "有珍珠，有奶，还有茶",
+			"goods_imgs": []
+		}]
 	},
 	"goods_types": {
-		"data": [
-			// 	{
-			// 	"goods_type_id": 1001,
-			// 	"goods_type_name": "奶茶"
-			// }
-			// , {
-			// 	"goods_type_id": 1002,
-			// 	"goods_type_name": "咖啡"
-			// }, {
-			// 	"goods_type_id": 1003,
-			// 	"goods_type_name": "纯茶"
-			// },{
-			// 	"goods_type_id": 1004,
-			// 	"goods_type_name": "果汁"
-			// }
-		],
-		"schema": {
-			"bsonType": "object",
-			"required": [],
-			"permission": {
-				"read": true,
-				"create": true,
-				"update": true,
-				"delete": false
-			},
-			"properties": {
-				"_id": {
-					"description": "ID，系统自动生成"
-				},
-				"goods_type_id": {
-					"bsonType": "int",
-					"description": "商品类型id"
-				},
-				"goods_type_name": {
-					"bsonType": "string",
-					"trim": "both",
-					"description": "商品类型名称"
-				}
-			}
-		}
+		"data": [{
+			"goods_type_id": 1001,
+			"goods_type_name": "奶茶"
+		}, {
+			"goods_type_id": 1002,
+			"goods_type_name": "咖啡"
+		}, {
+			"goods_type_id": 1003,
+			"goods_type_name": "纯茶"
+		}, {
+			"goods_type_id": 1004,
+			"goods_type_name": "果汁"
+		}, {
+			"goods_type_id": 1005,
+			"goods_type_name": "果茶"
+		}]
 	},
 	"goods_params": {
-		"data": [
-			{
+		"data": [{
 				"goods_params_id": 2001,
 				"goods_params_type": 1,
 				"goods_params_name": "珍珠"
-			}
-			// ,{
-			// 	"goods_params_id": 2002,
-			// 	"goods_params_type": 1,
-			// 	"goods_params_name": "椰果"
-			// }, {
-			// 	"goods_params_id": 3001,
-			// 	"goods_params_type": 2,
-			// 	"goods_params_name": "去冰"
-			// }, {
-			// 	"goods_params_id": 3002,
-			// 	"goods_params_type": 2,
-			// 	"goods_params_name": "少冰"
-			// }, {
-			// 	"goods_params_id": 3003,
-			// 	"goods_params_type": 2,
-			// 	"goods_params_name": "正常冰",
-			// 	"default": true
-			// }, {
-			// 	"goods_params_id": 3004,
-			// 	"goods_params_type": 2,
-			// 	"goods_params_name": "加冰"
-			// }, {
-			// 	"goods_params_id": 4001,
-			// 	"goods_params_type": 3,
-			// 	"goods_params_name": "冰"
-			// }, {
-			// 	"goods_params_id": 4002,
-			// 	"goods_params_type": 3,
-			// 	"goods_params_name": "常温"
-			// }, {
-			// 	"goods_params_id": 4003,
-			// 	"goods_params_type": 3,
-			// 	"goods_params_name": "热"
-			// },
-			//{
-			// 	"goods_params_id": 5001,
-			// 	"goods_params_type": 3,
-			// 	"goods_params_name": "正常糖",
-			//  "default":true,
-			// },
-			//{
-			// 	"goods_params_id": 5002,
-			// 	"goods_params_type": 3,
-			// 	"goods_params_name": "少糖"
-			// }
-			],
-		"schema": {
-			"bsonType": "object",
-			"required": [],
-			"permission": {
-				"read": true,
-				"create": true,
-				"update": true,
-				"delete": false
+			}, {
+				"goods_params_id": 2002,
+				"goods_params_type": 1,
+				"goods_params_name": "椰果"
+			}, {
+				"goods_params_id": 3001,
+				"goods_params_type": 2,
+				"goods_params_name": "去冰"
+			}, {
+				"goods_params_id": 3002,
+				"goods_params_type": 2,
+				"goods_params_name": "少冰"
+			}, {
+				"goods_params_id": 3003,
+				"goods_params_type": 2,
+				"goods_params_name": "正常冰",
+				"default": true
+			}, {
+				"goods_params_id": 3004,
+				"goods_params_type": 2,
+				"goods_params_name": "加冰"
+			}, {
+				"goods_params_id": 4001,
+				"goods_params_type": 3,
+				"goods_params_name": "冰"
+			}, {
+				"goods_params_id": 4002,
+				"goods_params_type": 3,
+				"goods_params_name": "常温"
+			}, {
+				"goods_params_id": 4003,
+				"goods_params_type": 3,
+				"goods_params_name": "热"
 			},
-			"properties": {
-				"_id": {
-					"description": "ID，系统自动生成"
-				},
-				"goods_params_id": {
-					"bsonType": "int",
-					"description": "商品选参id"
-				},
-				"goods_params_type": {
-					"bsonType": "int",
-					"description": "商品选参类型"
-				},
-				"goods_params_name": {
-					"bsonType": "string",
-					"trim": "both",
-					"description": "商品选参名称"
-				},
-				"default":{
-					"bsonType": "boolean",
-					"description": "默认选中"
-				}
+			{
+				"goods_params_id": 5001,
+				"goods_params_type": 3,
+				"goods_params_name": "正常糖",
+				"default": true
+			},
+			{
+				"goods_params_id": 5002,
+				"goods_params_type": 3,
+				"goods_params_name": "少糖"
 			}
-		}
+		]
 	}
 }

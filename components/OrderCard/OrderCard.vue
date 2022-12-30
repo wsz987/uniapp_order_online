@@ -6,7 +6,7 @@
 			</view>
 			<u-tag :text="info.position? info.position :'自提'" type="warning" size="mini"></u-tag>
 			<view class="complete">
-				<u-tag text="已完成" plain size="mini" type="warning"></u-tag>
+				<u-tag text="已完成 > " plain size="mini" type="warning"  @click="toOrderInfoPage(info)"></u-tag>
 			</view>
 		</view>
 		<u-divider :dot="true"></u-divider>
@@ -43,6 +43,15 @@
 					acc.push({src:item.goods_imgs[0],count:item.count})
 					return acc
 				}, [])
+			},
+			toOrderInfoPage(info){
+				uni.navigateTo({
+					url:'/pages/orderInfo/orderInfo',
+					success: (res)=> {
+					    // 通过eventChannel向被打开页面传送数据
+					    res.eventChannel.emit('acceptDataFromOpenerPage', { data: info })
+					}
+				})
 			}
 		},
 		computed: {

@@ -7,11 +7,11 @@
 			<view class="price">
 				￥{{$price(price)}}
 			</view>
-			<!-- <view class="submit-btn" @click="submitOrder">
+		<!-- 	<view class="submit-btn" @click="submitOrder">
 				购买
 			</view> -->
 			<view class="submit-btn" @click="submitOrderSubscribe">
-				预约
+				下单
 			</view>
 		</view>
 		<OrderSubscribe @complete="complete" :show="show" @close="show=false"/>
@@ -40,10 +40,10 @@
 		methods: {
 			...mapActions('shoppingCart', ['updateCart']),
 			async submitOrder(info={}) {
-				// if(this.getCart.length == 0 ) return uni.showToast({
-				// 	icon:'none',
-				// 	title:"请添加购物车"
-				// })
+				if(this.getCart.length == 0 ) return uni.showToast({
+					icon:'none',
+					title:"请添加购物车"
+				})
 				uni.showLoading({
 					title: '订单提交中'
 				})

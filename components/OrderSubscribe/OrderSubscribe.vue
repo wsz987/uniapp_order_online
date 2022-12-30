@@ -6,7 +6,7 @@
 					<u-input placeholder="方便联系" clearable v-model="info.phone">
 					</u-input>
 				</u-form-item>
-				<u-form-item label="预约" prop="date" required>
+				<!-- <u-form-item label="预约" prop="date" required>
 					<u-row justify="space-between">
 						<u-col span="7">
 							<uni-datetime-picker type="date" :clear-icon="false" v-model="info.date"
@@ -21,7 +21,7 @@
 							<u-button plain :text="info.detailed" @click.native="picker=true"></u-button>
 						</u-col>
 					</u-row>
-				</u-form-item>
+				</u-form-item> -->
 				<u-form-item label="备注" prop="remarks">
 					<u--textarea count  v-model="info.remarks" placeholder="备注内容" autoHeight></u--textarea>
 				</u-form-item>
